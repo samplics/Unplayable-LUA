@@ -34,12 +34,64 @@ URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Un
 
 --arrays of different files (for random access)
 local sounds = {
-    ['bruh'] = 
+    ['bruh'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\bruh.wav",
+    ['tacobell'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\tacobell.wav",
+    ['flight'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\flight.wav",
+    ['psqs'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\psandqs.wav",
+    ['monke'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\monkey.wav",
+    ['bombplanted'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\bombplanted.wav",
+    ['bombdefused'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\bombdefused.wav",
+    ['nukealarm'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\nuclearalarm.wav",
+    ['yanknobrim'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\yankeenobrim.wav",
+    ['legroom'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\legroom.wav",
+    ['highpitch'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\deathtoears.wav",
+    ['moan'] = GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\loudmoan.wav"
+}
+
+local bombSounds = {
+    [0] = sounds['bombplanted'],
+    [1] = sounds['bombdefused']
+}
+
+local shootSounds = {
+    [0] = sounds['bruh'],
+    [1] = sounds['tacobell']
+}
+
+local damageSounds = {
+    [0] = sounds['monke'],
+    [1] = sounds['highpitch'],
+    [2] = sounds['moan']
+}
+
+local randomSounds = {
+    [0] = sounds['flight'],
+    [1] = sounds['psqs'],
+    [2] = sounds['nukealarm'],
+    [3] = sounds['yanknobrim'],
+    [4] = sounds['legroom'],
+    [5] = sounds['highpitch'],
+    [6] = bombSounds[0],
+    [7] = bombSounds[1]
 }
 
 local images = {
     ['dvd'] = Render.LoadImage('dvd', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\dvdplayer.gif"),
-    
+    ['hentai'] = Render.LoadImage('hentai', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\hentai.png"),
+    ['blood'] = Render.LoadImage('blood', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\blood.png"),
+    ['t'] = Render.LoadImage('t', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\terrorist.png"),
+    ['ct'] = Render.LoadImage('ct', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\counterterrorist.png")
 }
+
 function onShoot()
+    PlaySound(shootSounds[math.random(#shootSounds)])
 end
+
+function onDamage()
+    PlaySound(damageSounds[math.random(#damageSounds)])
+end
+
+function soundsAtRandom()
+end
+
+
