@@ -102,7 +102,41 @@ function onDamage()
     PlaySound(damageSounds[math.random(#damageSounds)])
 end
 
-function soundsAtRandom()
+function randomGenerate()
+    local number = math.random(1, 10)
+    if(number == 7) then
+        PlaySound(randomSounds[math.random(#randomSounds)])
+    elseif(number == 2) then
+        Render.Image(images[math.random(#images)])
+    end
 end
 
+function runRandomLoop()
+    repeat
+        randomGenerate()
+        Sleep(7500)
+    until(false)
+end
+
+Hack.RegisterCallback("FireEventClientSideThink", function(Event)
+    if(Menu.GetBool("EnableUnplayable")) then
+        if(Event:GetName() == "weapon_fire") then
+            local clientUID = Event:GetInt("userid", 0);
+            if(clientUID == IEngine.GetLocalPlayer()) then
+                onShoot()
+            end
+        elseif(Event:GetName() == "player_damage") then
+            local attackedPlayer = Event:GetInt("", 0);
+            if(attackedPlayer == IEngine.GetLocalPlayer()) then
+                onDamage()
+            end
+        end
+    end
+end)
+
+Hack.RegisterCallback("PaintTraverse", function()
+    if(Menu.GetBool("EnableUnplayable")) then
+        runRandomLoop()
+    end
+end)
 
