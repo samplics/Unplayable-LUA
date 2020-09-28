@@ -29,6 +29,11 @@ URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Un
 URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\blood.png") --blood splatter
 URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\terrorist.png") --terrorist model
 URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\counterterrorist.png") --ct model
+URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\petergriffin.png") -- peter griffin
+URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\pog.png") --pog
+URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\hitmarker.png") --mlg hitmarker
+URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\scope.png") --old mlg scope lol
+URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\obama.png") --obama
 --other
 URLDownloadToFile("", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\comicsans.ttf") --comic sans bold font
 
@@ -80,7 +85,12 @@ local images = {
     ['hentai'] = Render.LoadImage('hentai', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\hentai.png"),
     ['blood'] = Render.LoadImage('blood', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\blood.png"),
     ['t'] = Render.LoadImage('t', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\terrorist.png"),
-    ['ct'] = Render.LoadImage('ct', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\counterterrorist.png")
+    ['ct'] = Render.LoadImage('ct', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\counterterrorist.png"),
+    ['petergriffin'] = Render.LoadImage('petergriffin', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\petergriffin.png"),
+    ['pog'] = Render.LoadImage('pog', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\pog.png"),
+    ['hitmarker'] = Render.LoadImage('hitmarker', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\hitmarker.png"),
+    ['scope'] = Render.LoadImage('scope', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\scope.png"),
+    ['obama'] = Render.LoadImage('obama', GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\sampli\\Unplayable\\obama.png"),
 }
 
 function onShoot()
@@ -88,6 +98,7 @@ function onShoot()
 end
 
 function onDamage()
+    Render.Image(images['blood'], Globals.ScreenWidth() - Globals.ScreenWidth() / 3.5 - 10 + ImageOffset, Globals.ScreenHeight() - 25 - 10, Globals.ScreenWidth() - Globals.ScreenWidth() / 3.5 + 10 + ImageOffset, Globals.ScreenHeight() - 25 + 10, Color.new(255, 255, 255, 255), 0, 0, 1, 1) 
     PlaySound(damageSounds[math.random(#damageSounds)])
 end
 
